@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Переводчик сообщений</h1>
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="text" class="form-label">Введите текст для перевода:</label>
+        <textarea class="form-control" id="text" name="text" rows="5" placeholder="Введите текст, содержащий сленг..."></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Перевести</button>
+</form>
+
+{% if translated_text %}
+<hr>
+<h2>Результат перевода:</h2>
+<div class="alert alert-success">{{ translated_text }}</div>
+{% endif %}
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Назад</a>
+{% endblock %}

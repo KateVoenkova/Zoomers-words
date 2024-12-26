@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Общий словарь сленга</h1>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Термин</th>
+            <th>Определение</th>
+            <th>Автор</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for term in terms %}
+        <tr>
+            <td>{{ term.term }}</td>
+            <td>{{ term.definition }}</td>
+            <td>{{ term.author.username }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Назад</a>
+{% endblock %}

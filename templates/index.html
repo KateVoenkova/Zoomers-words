@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Добро пожаловать на сайт "Словарь сленга зумеров"</h1>
+<p>Этот сервис поможет вам разобраться в зумерском сленге, а также добавлять собственные термины и их определения.</p>
+
+<div class="mt-4">
+    {% if 'user_id' in session %}
+        <a href="{{ url_for('terms') }}" class="btn btn-primary">Посмотреть словарь</a>
+        <a href="{{ url_for('my_terms') }}" class="btn btn-success">Мои термины</a>
+        <a href="{{ url_for('translate') }}" class="btn btn-info">Переводчик</a>
+    {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-primary">Войти</a>
+        <a href="{{ url_for('register') }}" class="btn btn-secondary">Регистрация</a>
+    {% endif %}
+</div>
+{% endblock %}

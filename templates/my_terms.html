@@ -1,0 +1,46 @@
+#Страница для управления своими терминами: добавление новых терминов и удаление существующих.
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Управление своими терминами</h1>
+
+<!-- Форма для добавления нового термина -->
+<form method="POST">
+    <div class="mb-3">
+        <label for="term" class="form-label">Термин:</label>
+        <input type="text" class="form-control" id="term" name="term" required placeholder="Введите термин">
+    </div>
+    <div class="mb-3">
+        <label for="definition" class="form-label">Определение:</label>
+        <textarea class="form-control" id="definition" name="definition" rows="3" required placeholder="Введите определение"></textarea>
+    </div>
+    <button type="submit" class="btn btn-success">Добавить</button>
+</form>
+
+<hr>
+
+<!-- Список добавленных пользователем терминов -->
+<h2>Ваши добавленные термины</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Термин</th>
+            <th>Определение</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for term in terms %}
+        <tr>
+            <td>{{ term.term }}</td>
+            <td>{{ term.definition }}</td>
+            <td>
+                <a href="{{ url_for('delete_term', term_id=term.id) }}" class="btn btn-danger btn-sm">Удалить</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<a href="{{ url_for('index') }}" class="btn btn-secondary">Назад</a>
+{% endblock %}
