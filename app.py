@@ -26,7 +26,14 @@ def register():
         username = request.form['username']
         password = request.form['password']
 
-        # Проверка на существование пользователя
+        if not username or not password:
+            flash('Пожалуйста, заполните все поля.')
+            return redirect(url_for('register'))
+
+        if len(username) < 2 or len(username) > 20:
+            flash('Имя пользователя должно быть от 2 до 20 символов.')
+            return redirect(url_for('register'))
+
         if User.query.filter_by(username=username).first():
             flash('Пользователь с таким именем уже существует.')
             return redirect(url_for('register'))
