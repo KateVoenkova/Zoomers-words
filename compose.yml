@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  flask_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: zoomers-words
+    environment:
+      - FLASK_ENV=production
+      - UPLOAD_FOLDER=/app/uploads
+    ports:
+      - "1197:1197"
+    volumes:
+      - ./static:/app/static
+      - ./data:/app/data
+      - ./instance:/app/instance
+    restart: unless-stopped
